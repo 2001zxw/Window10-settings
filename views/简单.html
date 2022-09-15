@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="../node_modules/vue/dist/vue.global.js"></script>
+    <style>
+        ul{
+            margin: 0;
+            margin-top: 200px;
+            list-style: none;
+        }
+        ul li{
+            display: inline-block;
+            /* border: 2px solid lightgray; */
+            margin: 10px;
+            width: 250px;
+            height: 80px;
+            padding-left: 5px;
+            padding-top: 5px;
+        }
+        ul img{
+            position: relative;
+            top: -15px;
+        }
+        ul div{
+            display: inline-block;
+            margin-left: 15px;
+        }
+        ul span{
+            font-size: 12px;
+            color: lightgray;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h1>设置</h1>
+                </div>
+                <input type="text" class="col-xs-10 col-xs-push-1 col-md-6 col-md-push-3" @blur="search()" v-model="searchKey" >
+                <ul>
+                    <li v-for="item of search()" :key="item.id">
+                        <img :src="item.imgUrl" alt="">
+                        <div>
+                            <h5>{{item.title}}</h5>
+                            <span>{{item.main}}</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    Vue.createApp({
+        data(){
+            return{
+                settings:[
+                    {
+                        id:1,
+                        imgUrl:"../public/img/系统.png",
+                        title:'系统',
+                        main:'显示、声音、通知、电源'
+                    },
+                    {
+                        id:2,
+                        imgUrl:"../public/img/设备.png",
+                        title:'设备',
+                        main:'蓝牙、打印机、鼠标'
+                    },
+                    {
+                        id:3,
+                        imgUrl:"../public/img/手机.png",
+                        title:'手机',
+                        main:'链接Android设备和iPhone'
+                    },
+                    {
+                        id:4,
+                        imgUrl:"../public/img/网络.png",
+                        title:'网络和Internet',
+                        main:'WLAN、飞行模式、VPN'
+                    },
+                    {
+                        id:5,
+                        imgUrl:"../public/img/个性化.png",
+                        title:'个性化',
+                        main:'背景、锁屏、颜色'
+                    },
+                    {
+                        id:6,
+                        imgUrl:"../public/img/应用.png",
+                        title:'应用',
+                        main:'卸载、默认应用、可选功能'
+                    },
+                    {
+                        id:7,
+                        imgUrl:"../public/img/账户.png",
+                        title:'账户',
+                        main:'你的账户、电子邮件、同步设置'
+                    },
+                    {
+                        id:8,
+                        imgUrl:"../public/img/时间.png",
+                        title:'时间和语言',
+                        main:'语音、区域、日期'
+                    },
+                    {
+                        id:9,
+                        imgUrl:"../public/img/游戏.png",
+                        title:'游戏',
+                        main:'Xbox Game Bar、捕获、游戏模式'
+                    },
+                    {
+                        id:10,
+                        imgUrl:"../public/img/使用.png",
+                        title:'轻松使用',
+                        main:'讲述人、放大镜、高度对比'
+                    },
+                    {
+                        id:11,
+                        imgUrl:"../public/img/搜索.png",
+                        title:'搜索',
+                        main:'查找我的文件、权限'
+                    },
+                    {
+                        id:12,
+                        imgUrl:"../public/img/隐私.png",
+                        title:'隐私',
+                        main:'位置、摄像头、麦克风'
+                    },
+                    {
+                        id:1,
+                        imgUrl:"../public/img/更新.png",
+                        title:'更新和安全',
+                        main:'Windows 更新、恢复、备份'
+                    }
+                ],
+                searchKey:''
+            }
+        },
+        methods:{
+            search(){
+                if (this.settings.filter((item) =>Object.values(item)[2].includes(this.searchKey)).length) {
+					return this.settings.filter((item) =>Object.values(item)[2].includes(this.searchKey));
+				}else if (this.settings.filter((item) =>Object.values(item)[3].includes(this.searchKey)).length) {
+					return this.settings.filter((item) =>Object.values(item)[3].includes(this.searchKey));
+				}
+            }
+        }
+
+    }).mount('#app')
+</script>
